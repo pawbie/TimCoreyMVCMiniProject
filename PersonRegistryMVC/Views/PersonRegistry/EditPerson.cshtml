@@ -1,0 +1,67 @@
+﻿@model PersonRegistryMVC.Models.PersonUIModel
+
+@{
+    ViewData["Title"] = "EditPerson";
+}
+
+<h1>EditPerson</h1>
+
+<h4>PersonUIModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditPerson">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" class="form-control"/>
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div class="btn-group">
+    <button class="btn"><a asp-action ="Index">Back to List</a></button>
+    <button class="btn"><a asp-action="CreateAddress">Add address</a></button>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Addresses</th>
+        </tr>
+       
+    </thead>
+   
+    <tbody>
+        
+        @foreach (var item in Model.Addresses)
+        {
+            <tr>
+                <td>
+                    <h5>@item.DisplayName</h5>
+                    @Html.ActionLink("Edit", "EditAddress", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

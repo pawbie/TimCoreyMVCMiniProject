@@ -1,0 +1,28 @@
+﻿@model IEnumerable<PersonRegistryLibrary.Models.PersonModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="CreatePerson">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <h5>@item.DisplayName</h5>
+                @Html.ActionLink("Edit", "EditPerson", new { id = item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
